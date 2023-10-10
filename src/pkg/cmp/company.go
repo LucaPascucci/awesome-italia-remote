@@ -32,7 +32,6 @@ var (
 		"Intermediary": true,
 	}
 	allowedRemotePolicies = map[string]bool{
-		"-":        true,
 		"Full":     true,
 		"Hybrid":   true,
 		"Optional": true,
@@ -102,4 +101,8 @@ func (c Company) Validate() error {
 	}
 
 	return nil
+}
+
+func (c *Company) Fix() {
+	c.Name = strings.ReplaceAll(c.Name, "|", "\\|")
 }
